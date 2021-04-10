@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>403636594842-db722dsgmb7viflebdum4g2taf3irvhi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.403636594842-db722dsgmb7viflebdum4g2taf3irvhi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKVk2C50Nco4Qt-OmVwFpbN-3d43Gunlg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>403636594842</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.annulus.Messenger</string>
+	<key>PROJECT_ID</key>
+	<string>messenger-419e9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>messenger-419e9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:403636594842:ios:85c3e1e0d82eae69189723</string>
+</dict>
+</plist>
