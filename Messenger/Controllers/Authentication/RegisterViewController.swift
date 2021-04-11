@@ -40,7 +40,6 @@ class RegisterViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
     }()
@@ -55,7 +54,6 @@ class RegisterViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
     }()
@@ -71,7 +69,6 @@ class RegisterViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
     }()
@@ -88,7 +85,6 @@ class RegisterViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.isSecureTextEntry = true
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
@@ -185,15 +181,19 @@ class RegisterViewController: UIViewController, Dialog {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.showLoading(isLoading: false)
         }
+        
         AuthManager.shared.createAccount(email: email, password: password) { [weak self] result in
-            self?.showLoading(isLoading: false)
             guard let strongSelf = self else { return }
 
             switch result {
-            case .success:
-                strongSelf.navigationController?.popViewController(animated: true)
+            case .success(let user):
+                let chatAppUser = ChatAppUser(uid: user.uid, firstName: firstName, lastName: lastName, email: email, photoURL: "")
+                DatabaseManager.shared.insertUser(user: chatAppUser) {
+                    strongSelf.navigationController?.popViewController(animated: true)
+                }
                 break
             case .failure(let error):
+                strongSelf.showLoading(isLoading: false)
                 strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
             }
         }

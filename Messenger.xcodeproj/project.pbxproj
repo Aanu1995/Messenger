@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE20296E262327E2002F44AD /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE20296D262327E2002F44AD /* DatabaseManager.swift */; };
+		CE20298326232EE5002F44AD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE20298226232EE5002F44AD /* Constants.swift */; };
+		CE20298626233167002F44AD /* ChatAppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE20298526233167002F44AD /* ChatAppUser.swift */; };
 		CE4AE3FD2621037C00FF2BD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE3FC2621037C00FF2BD9 /* LoginViewController.swift */; };
 		CE4AE400262103A500FF2BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE3FF262103A500FF2BD9 /* RegisterViewController.swift */; };
 		CE4AE404262103D800FF2BD9 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE403262103D800FF2BD9 /* PhotoViewerViewController.swift */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		3985ED339DA28614755613F7 /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A475408023141F4BFC49C25 /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
+		CE20296D262327E2002F44AD /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		CE20298226232EE5002F44AD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE20298526233167002F44AD /* ChatAppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppUser.swift; sourceTree = "<group>"; };
 		CE4AE3FC2621037C00FF2BD9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE4AE3FF262103A500FF2BD9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CE4AE403262103D800FF2BD9 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +88,7 @@
 		CE4AE3F22621011100FF2BD9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE20298526233167002F44AD /* ChatAppUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4AE40F26217CC000FF2BD9 /* AuthManager.swift */,
+				CE20296D262327E2002F44AD /* DatabaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -155,6 +163,7 @@
 			children = (
 				CE7697D02621E38B00CBFF40 /* Dialog.swift */,
 				CE7697D42621EE7A00CBFF40 /* LoadingView.swift */,
+				CE20298226232EE5002F44AD /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -310,6 +319,7 @@
 			files = (
 				CE7697D12621E38B00CBFF40 /* Dialog.swift in Sources */,
 				CE4AE407262103F900FF2BD9 /* VideoPlayer.swift in Sources */,
+				CE20296E262327E2002F44AD /* DatabaseManager.swift in Sources */,
 				CE4AE41026217CC000FF2BD9 /* AuthManager.swift in Sources */,
 				CE4AE3FD2621037C00FF2BD9 /* LoginViewController.swift in Sources */,
 				CE4AE400262103A500FF2BD9 /* RegisterViewController.swift in Sources */,
@@ -317,7 +327,9 @@
 				CE97D6CC2620DB6A008D5B38 /* ConversationViewController.swift in Sources */,
 				CE4AE4132621852400FF2BD9 /* Extension.swift in Sources */,
 				CE97D6C82620DB6A008D5B38 /* AppDelegate.swift in Sources */,
+				CE20298626233167002F44AD /* ChatAppUser.swift in Sources */,
 				CE97D6CA2620DB6A008D5B38 /* SceneDelegate.swift in Sources */,
+				CE20298326232EE5002F44AD /* Constants.swift in Sources */,
 				CE4AE40A2621042F00FF2BD9 /* ProfileViewController.swift in Sources */,
 				CE4AE404262103D800FF2BD9 /* PhotoViewerViewController.swift in Sources */,
 			);

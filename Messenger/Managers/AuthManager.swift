@@ -12,18 +12,29 @@ final class AuthManager {
     
     static let shared = AuthManager()
     
+    private let auth = FirebaseAuth.Auth.auth()
+    
     private init() {}
     
     private enum ApiError: Error {
         case FailedToCreateAccount
     }
     
-    public var isSignedIn: Bool {
-        return false
+    public var currentUser: User{
+        return user!
     }
     
+    public var isSignedIn: Bool {
+        return user != nil
+    }
+    
+    private var user: User? {
+        return FirebaseAuth.Auth.auth().currentUser
+    }
+    
+    /// create account for the user
     public func createAccount(email: String, password: String, completion: @escaping ((Result<User, Error>)) -> Void){
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        auth.createUser(withEmail: email, password: password) { (result, error) in
             DispatchQueue.main.async {
                 if let user = result?.user {
                     completion(.success(user))
@@ -36,8 +47,9 @@ final class AuthManager {
         }
     }
     
+    /// sign in to the app with email and password 
     public func signIn(email: String, password: String, completion: @escaping ((Result<User, Error>)) -> Void){
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        auth.signIn(withEmail: email, password: password) { (result, error) in
             DispatchQueue.main.async {
                 if let user = result?.user {
                     completion(.success(user))
@@ -47,6 +59,15 @@ final class AuthManager {
                     completion(.failure(ApiError.FailedToCreateAccount))
                 }
             }
+        }
+    }
+    
+    public func signOut(completion: (Error?) -> Void) {
+        do {
+            try auth.signOut()
+            completion(nil)
+        } catch {
+            completion(error)
         }
     }
 }

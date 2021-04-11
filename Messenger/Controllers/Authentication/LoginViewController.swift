@@ -41,7 +41,6 @@ class LoginViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
     }()
@@ -58,7 +57,6 @@ class LoginViewController: UIViewController, Dialog {
         textField.leftViewMode = .always
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.rightViewMode = .always
-        textField.backgroundColor = .white
         textField.isSecureTextEntry = true
         textField.layer.borderColor = UIColor.gray.cgColor
         return textField
@@ -137,7 +135,7 @@ class LoginViewController: UIViewController, Dialog {
 
             switch result {
             case .success:
-                break
+                strongSelf.navigationController?.dismiss(animated: true)
             case .failure(let error):
                 strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
             }
