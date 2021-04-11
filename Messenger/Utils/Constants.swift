@@ -12,4 +12,8 @@ struct Constants {
     struct Accounts {
         static let users = "Users"
     }
+    
+    struct Database {
+        
+    }
 }

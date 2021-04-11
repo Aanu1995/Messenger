@@ -7,12 +7,14 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseDatabase
 
 final class AuthManager {
     
     static let shared = AuthManager()
     
     private let auth = FirebaseAuth.Auth.auth()
+    private let database = Database.database().reference();
     
     private init() {}
     
@@ -62,6 +64,16 @@ final class AuthManager {
         }
     }
     
+    public func getCurrentUser(userId: String, completion: @escaping (Result<ChatAppUser, Error>) -> Void){
+        database.child(Constants.Accounts.users).child(userId).getData { (error, snapshot) in
+            if let error = error {
+                completion(Result.failure(error))
+                return
+            }
+        }
+    }
+    
+    /// sign user out of the app
     public func signOut(completion: (Error?) -> Void) {
         do {
             try auth.signOut()
