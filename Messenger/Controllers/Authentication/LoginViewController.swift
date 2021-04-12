@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController, Dialog {
     
@@ -72,6 +73,11 @@ class LoginViewController: UIViewController, Dialog {
         return button
     }()
     
+    private let googleLoginButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        return button
+    }()
+    
     // MARK: Properties
     
     private weak var currentSelectedTextField: UITextField?
@@ -80,7 +86,9 @@ class LoginViewController: UIViewController, Dialog {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(onGoogleSign), name: .googleSignIn, object: nil)
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+
         configureUI()
     }
     
@@ -93,6 +101,11 @@ class LoginViewController: UIViewController, Dialog {
         passwordField.frame = CGRect(x: emailField.left, y: emailField.bottom + 10, width: emailField.width, height: emailField.height)
         loginButton.frame = CGRect(x: emailField.left, y: passwordField.bottom + 30, width: emailField.width, height: emailField.height)
         loadingView.frame = CGRect(x: (view.width - 100)/2, y: (view.height - 90)/2, width: 100, height: 90)
+        googleLoginButton.frame = CGRect(x: loginButton.left, y: loginButton.bottom + 10, width: loginButton.width, height: loginButton.height)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: Methods
@@ -108,6 +121,7 @@ class LoginViewController: UIViewController, Dialog {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        scrollView.addSubview(googleLoginButton)
         
         emailField.delegate = self
         passwordField.delegate = self
@@ -161,6 +175,33 @@ class LoginViewController: UIViewController, Dialog {
     @objc private func didTapRegister() {
         let vc = RegisterViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func onGoogleSign() {
+        guard let credential = AuthManager.shared.googleSignInCredential, let user = AuthManager.shared.gidUser else {
+            return
+        }
+        
+        showLoading(isLoading: true)
+        
+        AuthManager.shared.signInWithCredential(credential: credential) { [weak self] result in
+            guard let strongSelf = self else { return }
+            
+            let firstName: String = user.profile.givenName ?? ""
+            let lastName: String = user.profile.familyName ?? ""
+            switch result {
+            case .success(let authUser):
+                let chatAppUser = ChatAppUser(uid: authUser.uid, firstName: firstName, lastName: lastName, email: authUser.email!, photoURL: authUser.photoURL?.absoluteString ?? "")
+                DatabaseManager.shared.insertUser(user: chatAppUser) {
+                    strongSelf.navigationController?.dismiss(animated: true)
+                }
+                break
+            case .failure(let error):
+                strongSelf.showLoading(isLoading: false)
+                strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
+                break
+            }
+        }
     }
 }
 

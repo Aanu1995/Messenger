@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseDatabase
+import GoogleSignIn
 
 final class AuthManager {
     
@@ -17,6 +18,10 @@ final class AuthManager {
     private let database = Database.database().reference();
     
     private init() {}
+    
+    // this variables is only used when signing via Google
+    public var googleSignInCredential: AuthCredential?
+    public var gidUser: GIDGoogleUser?
     
     private enum ApiError: Error {
         case FailedToCreateAccount
@@ -64,6 +69,21 @@ final class AuthManager {
         }
     }
     
+    /// sign in to the app with email and password
+    public func signInWithCredential(credential: AuthCredential, completion: @escaping ((Result<User, Error>)) -> Void){
+        auth.signIn(with: credential) { (result, error) in
+            DispatchQueue.main.async {
+                if let user = result?.user {
+                    completion(.success(user))
+                } else if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.failure(ApiError.FailedToCreateAccount))
+                }
+            }
+        }
+    }
+    
     public func getCurrentUser(userId: String, completion: @escaping (Result<ChatAppUser, Error>) -> Void){
         database.child(Constants.Accounts.users).child(userId).getData { (error, snapshot) in
             if let error = error {
@@ -77,6 +97,7 @@ final class AuthManager {
     public func signOut(completion: (Error?) -> Void) {
         do {
             try auth.signOut()
+            GIDSignIn.sharedInstance()?.signOut()
             completion(nil)
         } catch {
             completion(error)

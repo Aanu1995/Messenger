@@ -33,3 +33,9 @@ extension UIView {
         return top + height
     }
 }
+
+// MARK: Notification
+
+extension Notification.Name {
+    static let googleSignIn = Notification.Name("googleSignIn")
+}
