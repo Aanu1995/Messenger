@@ -7,13 +7,15 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegisterViewController: UIViewController, Dialog {
     
     // MARK: UI Properties
     
-    private let loadingView: LoadingView = {
-        let loadingView = LoadingView()
+    private let loadingView: JGProgressHUD = {
+        let loadingView = JGProgressHUD()
+        loadingView.textLabel.text = "Creating Account"
         return loadingView
     }()
     
@@ -124,8 +126,6 @@ class RegisterViewController: UIViewController, Dialog {
         emailField.frame = CGRect(x: firstNameField.left, y: lastNameField.bottom + 10, width: firstNameField.width, height: firstNameField.height)
         passwordField.frame = CGRect(x: firstNameField.left, y: emailField.bottom + 10, width: firstNameField.width, height: firstNameField.height)
         registerButton.frame = CGRect(x: firstNameField.left, y: passwordField.bottom + 30, width: firstNameField.width, height: firstNameField.height)
-        loadingView.sizeToFit()
-        loadingView.frame = CGRect(x: (view.width - 120)/2, y: (view.height - 90)/2, width: 130, height: 90)
     }
     
     // MARK: Methods
@@ -157,7 +157,6 @@ class RegisterViewController: UIViewController, Dialog {
         profileView.isUserInteractionEnabled = true
         
         registerButton.addTarget(self, action: #selector(registerButtonTap), for: .touchUpInside)
-        loadingView.configure(with: "Creating Account")
     }
     
     @objc private func registerButtonTap() {
@@ -201,9 +200,9 @@ class RegisterViewController: UIViewController, Dialog {
     
     private func showLoading(isLoading: Bool) {
         if isLoading {
-            view.addSubview(loadingView)
+            loadingView.show(in: view, animated: true)
         } else {
-            loadingView.removeFromSuperview()
+            loadingView.dismiss(animated: true)
         }
         firstNameField.isEnabled = !isLoading
         lastNameField.isEnabled = !isLoading

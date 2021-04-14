@@ -7,13 +7,15 @@
 
 import UIKit
 import GoogleSignIn
+import JGProgressHUD
 
 class LoginViewController: UIViewController, Dialog {
     
     // MARK: UI Properties
     
-    private let loadingView: LoadingView = {
-        let loadingView = LoadingView()
+    private let loadingView: JGProgressHUD = {
+        let loadingView = JGProgressHUD()
+        loadingView.textLabel.text = "Logging In"
         return loadingView
     }()
     
@@ -100,7 +102,6 @@ class LoginViewController: UIViewController, Dialog {
         emailField.frame = CGRect(x: 30, y: view.height/4.5, width: scrollView.width - 60, height: 52)
         passwordField.frame = CGRect(x: emailField.left, y: emailField.bottom + 10, width: emailField.width, height: emailField.height)
         loginButton.frame = CGRect(x: emailField.left, y: passwordField.bottom + 30, width: emailField.width, height: emailField.height)
-        loadingView.frame = CGRect(x: (view.width - 100)/2, y: (view.height - 90)/2, width: 100, height: 90)
         googleLoginButton.frame = CGRect(x: loginButton.left, y: loginButton.bottom + 10, width: loginButton.width, height: loginButton.height)
     }
     
@@ -127,7 +128,6 @@ class LoginViewController: UIViewController, Dialog {
         passwordField.delegate = self
         
         loginButton.addTarget(self, action: #selector(loginButtonTap), for: .touchUpInside)
-        loadingView.configure(with: "Logging In")
     }
     
     @objc private func loginButtonTap(){
@@ -158,9 +158,9 @@ class LoginViewController: UIViewController, Dialog {
     
     private func showLoading(isLoading: Bool) {
         if isLoading {
-            view.addSubview(loadingView)
+            loadingView.show(in: self.view, animated: true)
         } else {
-            loadingView.removeFromSuperview()
+            loadingView.dismiss(animated: true)
         }
         emailField.isEnabled = !isLoading
         passwordField.isEnabled = !isLoading

@@ -19,13 +19,16 @@
 		CE4AE4132621852400FF2BD9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE4122621852400FF2BD9 /* Extension.swift */; };
 		CE7697BA2621DD4F00CBFF40 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7697B92621DD4E00CBFF40 /* GoogleService-Info.plist */; };
 		CE7697D12621E38B00CBFF40 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7697D02621E38B00CBFF40 /* Dialog.swift */; };
-		CE7697D52621EE7A00CBFF40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7697D42621EE7A00CBFF40 /* LoadingView.swift */; };
 		CE97D6C82620DB6A008D5B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6C72620DB6A008D5B38 /* AppDelegate.swift */; };
 		CE97D6CA2620DB6A008D5B38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6C92620DB6A008D5B38 /* SceneDelegate.swift */; };
 		CE97D6CC2620DB6A008D5B38 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6CB2620DB6A008D5B38 /* ConversationViewController.swift */; };
 		CE97D6CF2620DB6A008D5B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE97D6CD2620DB6A008D5B38 /* Main.storyboard */; };
 		CE97D6D12620DB6B008D5B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE97D6D02620DB6B008D5B38 /* Assets.xcassets */; };
 		CE97D6D42620DB6B008D5B38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE97D6D22620DB6B008D5B38 /* LaunchScreen.storyboard */; };
+		CE9D0774262670FC00A24E5B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D0773262670FC00A24E5B /* ChatViewController.swift */; };
+		CE9D0777262676C700A24E5B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D0776262676C700A24E5B /* Message.swift */; };
+		CE9D077B262677C500A24E5B /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D077A262677C500A24E5B /* Sender.swift */; };
+		CE9D077E2626823800A24E5B /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D077D2626823800A24E5B /* NewConversationViewController.swift */; };
 		D0E9820F5D22F15F020C5664 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3985ED339DA28614755613F7 /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +47,6 @@
 		CE4AE4122621852400FF2BD9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE7697B92621DD4E00CBFF40 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE7697D02621E38B00CBFF40 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
-		CE7697D42621EE7A00CBFF40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CE97D6C42620DB6A008D5B38 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE97D6C72620DB6A008D5B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE97D6C92620DB6A008D5B38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,10 @@
 		CE97D6D02620DB6B008D5B38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE97D6D32620DB6B008D5B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE97D6D52620DB6B008D5B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9D0773262670FC00A24E5B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CE9D0776262676C700A24E5B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		CE9D077A262677C500A24E5B /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		CE9D077D2626823800A24E5B /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		EACBA932FF649DFE2057C9C5 /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				CE20298526233167002F44AD /* ChatAppUser.swift */,
+				CE9D0776262676C700A24E5B /* Message.swift */,
+				CE9D077A262677C500A24E5B /* Sender.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +135,8 @@
 				CE4AE403262103D800FF2BD9 /* PhotoViewerViewController.swift */,
 				CE4AE406262103F900FF2BD9 /* VideoPlayer.swift */,
 				CE4AE4092621042F00FF2BD9 /* ProfileViewController.swift */,
+				CE9D0773262670FC00A24E5B /* ChatViewController.swift */,
+				CE9D077D2626823800A24E5B /* NewConversationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -162,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				CE7697D02621E38B00CBFF40 /* Dialog.swift */,
-				CE7697D42621EE7A00CBFF40 /* LoadingView.swift */,
 				CE20298226232EE5002F44AD /* Constants.swift */,
 			);
 			path = Utils;
@@ -213,8 +222,8 @@
 				CE97D6C02620DB6A008D5B38 /* Sources */,
 				CE97D6C12620DB6A008D5B38 /* Frameworks */,
 				CE97D6C22620DB6A008D5B38 /* Resources */,
-				3A20A35FD31211B9F5246913 /* [CP] Embed Pods Frameworks */,
-				F67B0369A964EA2E2EF70B4A /* [CP] Copy Pods Resources */,
+				53EB29BDA0C568281967C800 /* [CP] Embed Pods Frameworks */,
+				72D8BF5721A70FFD6C4E0ACE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,7 +303,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3A20A35FD31211B9F5246913 /* [CP] Embed Pods Frameworks */ = {
+		53EB29BDA0C568281967C800 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -311,7 +320,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F67B0369A964EA2E2EF70B4A /* [CP] Copy Pods Resources */ = {
+		72D8BF5721A70FFD6C4E0ACE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,11 +346,12 @@
 			files = (
 				CE7697D12621E38B00CBFF40 /* Dialog.swift in Sources */,
 				CE4AE407262103F900FF2BD9 /* VideoPlayer.swift in Sources */,
+				CE9D077B262677C500A24E5B /* Sender.swift in Sources */,
 				CE20296E262327E2002F44AD /* DatabaseManager.swift in Sources */,
 				CE4AE41026217CC000FF2BD9 /* AuthManager.swift in Sources */,
 				CE4AE3FD2621037C00FF2BD9 /* LoginViewController.swift in Sources */,
+				CE9D077E2626823800A24E5B /* NewConversationViewController.swift in Sources */,
 				CE4AE400262103A500FF2BD9 /* RegisterViewController.swift in Sources */,
-				CE7697D52621EE7A00CBFF40 /* LoadingView.swift in Sources */,
 				CE97D6CC2620DB6A008D5B38 /* ConversationViewController.swift in Sources */,
 				CE4AE4132621852400FF2BD9 /* Extension.swift in Sources */,
 				CE97D6C82620DB6A008D5B38 /* AppDelegate.swift in Sources */,
@@ -349,6 +359,8 @@
 				CE97D6CA2620DB6A008D5B38 /* SceneDelegate.swift in Sources */,
 				CE20298326232EE5002F44AD /* Constants.swift in Sources */,
 				CE4AE40A2621042F00FF2BD9 /* ProfileViewController.swift in Sources */,
+				CE9D0777262676C700A24E5B /* Message.swift in Sources */,
+				CE9D0774262670FC00A24E5B /* ChatViewController.swift in Sources */,
 				CE4AE404262103D800FF2BD9 /* PhotoViewerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
