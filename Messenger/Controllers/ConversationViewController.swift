@@ -63,6 +63,7 @@ class ConversationViewController: UIViewController {
     }
     
     private func checkIfUserIsLoggedIn(){
+        AuthManager.shared.getUserDataFromCache() // retrieve data from cache if available
         if !AuthManager.shared.isSignedIn {
             let navC = UINavigationController(rootViewController: LoginViewController())
             navC.modalPresentationStyle = .fullScreen

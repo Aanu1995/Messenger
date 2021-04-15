@@ -143,15 +143,16 @@ class LoginViewController: UIViewController, Dialog {
         }
         
         showLoading(isLoading: true)
-        AuthManager.shared.signIn(email: email, password: password) { [weak self] result in
-            self?.showLoading(isLoading: false)
-            guard let strongSelf = self else { return }
-
-            switch result {
-            case .success:
+        AuthManager.shared.signIn(email: email, password: password) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.showLoading(isLoading: false)
+                guard let strongSelf = self else { return }
+                
+                if let error = error {
+                    strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
+                    return
+                }
                 strongSelf.navigationController?.dismiss(animated: true)
-            case .failure(let error):
-                strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
             }
         }
     }
@@ -192,14 +193,25 @@ class LoginViewController: UIViewController, Dialog {
             switch result {
             case .success(let authUser):
                 let chatAppUser = ChatAppUser(uid: authUser.uid, firstName: firstName, lastName: lastName, email: authUser.email!, photoURL: authUser.photoURL?.absoluteString ?? "")
-                DatabaseManager.shared.insertUser(user: chatAppUser) {
-                    strongSelf.navigationController?.dismiss(animated: true)
+                DatabaseManager.shared.insertUser(user: chatAppUser, image: nil) {
+                    AuthManager.shared.getCurrentUser(userId: authUser.uid) { error in
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                strongSelf.showLoading(isLoading: false)
+                                strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
+                                return
+                            }
+                           
+                            strongSelf.navigationController?.dismiss(animated: true)
+                        }
+                    }
                 }
                 break
             case .failure(let error):
-                strongSelf.showLoading(isLoading: false)
-                strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
-                break
+                DispatchQueue.main.async {
+                    strongSelf.showLoading(isLoading: false)
+                    strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
+                }
             }
         }
     }

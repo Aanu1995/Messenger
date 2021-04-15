@@ -187,7 +187,7 @@ class RegisterViewController: UIViewController, Dialog {
             switch result {
             case .success(let user):
                 let chatAppUser = ChatAppUser(uid: user.uid, firstName: firstName, lastName: lastName, email: email, photoURL: "")
-                DatabaseManager.shared.insertUser(user: chatAppUser) {
+                DatabaseManager.shared.insertUser(user: chatAppUser, image: strongSelf.profileView.image?.pngData()) {
                     strongSelf.navigationController?.popViewController(animated: true)
                 }
                 break

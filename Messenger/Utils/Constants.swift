@@ -10,10 +10,10 @@ import Foundation
 struct Constants {
     
     struct Accounts {
-        static let users = "Users"
+        static let user = "user"
     }
     
     struct Database {
-        
+        static let users = "Users"
     }
 }

@@ -19,6 +19,9 @@
 		CE4AE4132621852400FF2BD9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE4122621852400FF2BD9 /* Extension.swift */; };
 		CE7697BA2621DD4F00CBFF40 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7697B92621DD4E00CBFF40 /* GoogleService-Info.plist */; };
 		CE7697D12621E38B00CBFF40 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7697D02621E38B00CBFF40 /* Dialog.swift */; };
+		CE91FFD426283EC2009C2CD1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FFD326283EC2009C2CD1 /* StorageManager.swift */; };
+		CE91FFD726289980009C2CD1 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FFD626289980009C2CD1 /* UserTableViewCell.swift */; };
+		CE91FFDA26289A79009C2CD1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91FFD926289A79009C2CD1 /* UserViewModel.swift */; };
 		CE97D6C82620DB6A008D5B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6C72620DB6A008D5B38 /* AppDelegate.swift */; };
 		CE97D6CA2620DB6A008D5B38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6C92620DB6A008D5B38 /* SceneDelegate.swift */; };
 		CE97D6CC2620DB6A008D5B38 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D6CB2620DB6A008D5B38 /* ConversationViewController.swift */; };
@@ -47,6 +50,9 @@
 		CE4AE4122621852400FF2BD9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CE7697B92621DD4E00CBFF40 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE7697D02621E38B00CBFF40 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		CE91FFD326283EC2009C2CD1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		CE91FFD626289980009C2CD1 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		CE91FFD926289A79009C2CD1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = Messenger/Views/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 		CE97D6C42620DB6A008D5B38 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE97D6C72620DB6A008D5B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE97D6C92620DB6A008D5B38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +112,7 @@
 			children = (
 				CE97D6D02620DB6B008D5B38 /* Assets.xcassets */,
 				CE4AE3F92621017800FF2BD9 /* StoryBoards */,
+				CE91FFD626289980009C2CD1 /* UserTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 		CE4AE3F62621014600FF2BD9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CE91FFD926289A79009C2CD1 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -164,6 +172,7 @@
 			children = (
 				CE4AE40F26217CC000FF2BD9 /* AuthManager.swift */,
 				CE20296D262327E2002F44AD /* DatabaseManager.swift */,
+				CE91FFD326283EC2009C2CD1 /* StorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -348,11 +357,13 @@
 				CE4AE407262103F900FF2BD9 /* VideoPlayer.swift in Sources */,
 				CE9D077B262677C500A24E5B /* Sender.swift in Sources */,
 				CE20296E262327E2002F44AD /* DatabaseManager.swift in Sources */,
+				CE91FFD726289980009C2CD1 /* UserTableViewCell.swift in Sources */,
 				CE4AE41026217CC000FF2BD9 /* AuthManager.swift in Sources */,
 				CE4AE3FD2621037C00FF2BD9 /* LoginViewController.swift in Sources */,
 				CE9D077E2626823800A24E5B /* NewConversationViewController.swift in Sources */,
 				CE4AE400262103A500FF2BD9 /* RegisterViewController.swift in Sources */,
 				CE97D6CC2620DB6A008D5B38 /* ConversationViewController.swift in Sources */,
+				CE91FFD426283EC2009C2CD1 /* StorageManager.swift in Sources */,
 				CE4AE4132621852400FF2BD9 /* Extension.swift in Sources */,
 				CE97D6C82620DB6A008D5B38 /* AppDelegate.swift in Sources */,
 				CE20298626233167002F44AD /* ChatAppUser.swift in Sources */,
@@ -361,6 +372,7 @@
 				CE4AE40A2621042F00FF2BD9 /* ProfileViewController.swift in Sources */,
 				CE9D0777262676C700A24E5B /* Message.swift in Sources */,
 				CE9D0774262670FC00A24E5B /* ChatViewController.swift in Sources */,
+				CE91FFDA26289A79009C2CD1 /* UserViewModel.swift in Sources */,
 				CE4AE404262103D800FF2BD9 /* PhotoViewerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
