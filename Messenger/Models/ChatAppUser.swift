@@ -20,6 +20,10 @@ extension ChatAppUser {
     var fullName: String {
         return firstName.sentencecased() + " " + lastName.sentencecased()
     }
+    
+    var imageURL: URL? {
+        return URL(string: photoURL)
+    }
 }
 
 

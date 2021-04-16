@@ -9,6 +9,7 @@ import Foundation
 import FirebaseDatabase
 
 final class DatabaseManager {
+    
     static let shared = DatabaseManager()
     
     private init() {}
@@ -97,5 +98,59 @@ extension DatabaseManager {
     private func addUserDataToDatabase(user: ChatAppUser){
         let data = try! JSONSerialization.jsonObject(with: try! JSONEncoder().encode(user), options: .fragmentsAllowed)
         self.database.child(Constants.Database.users).child(user.uid).setValue(data)
+    }
+}
+
+// MARK: All conversations and Messages
+
+extension DatabaseManager {
+    
+    /// create new conversation by sending the first message
+    public func createNewConversation(with otherUser: ChatAppUser, conversationId: String, message: Message, completion: @escaping(Bool) -> Void) {
+        
+        
+
+    }
+    
+    /// get all list of conversations that the current user has had with other users
+    public func getAllConversations(for user: ChatAppUser, completion: @escaping (Result<[Conversation], Error>) -> Void){
+        database.child(Constants.Database.conversations).getData { (error, snapshot) in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            
+            var chats: [Conversation] = []
+            
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                if let value = snap.value as? [String: Any], (value["id"] as! String).contains(user.uid) {
+                    let data = try! JSONSerialization.data(withJSONObject: value, options: .fragmentsAllowed)
+                    let chat = try! JSONDecoder().decode(Conversation.self, from: data)
+                    chats.append(chat)
+                }
+            }
+            completion(.success(chats))
+        }
+    }
+    
+    /// get all messages for a conversation with othe ruser
+    public func getAllMessagesForConversation(with receiver: ChatAppUser, completion: @escaping () -> Void){
+        
+    }
+    
+    /// append message to already existing messages for conversation with other user
+    public func sendMessage(with otherUser: ChatAppUser, conversationId: String, message: Message, completion: @escaping(Bool) -> Void) {
+        let conversationDictionary = Conversation.toDictionary(conversationId: conversationId, message: message, receiverId: otherUser.uid)
+        database.child(Constants.Database.conversations).child(conversationId).setValue(conversationDictionary) { [weak self] (error, _) in
+            if error == nil {
+                let messageDictionary = Message.toDictionary(message: message, receiverId: otherUser.uid)
+                guard let strongSelf = self else { return }
+                strongSelf.database.child(Constants.Database.messages).child(conversationId).child(message.messageId).setValue(messageDictionary)
+                completion(true)
+               return
+            }
+            completion(false)
+        }
     }
 }

@@ -10,8 +10,13 @@ import UIKit
 class NewConversationViewController: UIViewController, Dialog {
     
     // MARK: Properties
+    
     private var users: [ChatAppUser] = []
     private var filteredUsers: [ChatAppUser] = []
+    
+    public var newUserSelected: ((ChatAppUser) -> Void)?
+    
+    
     
     let searchController: UISearchController = {
         let vc = UISearchController()
@@ -124,7 +129,7 @@ class NewConversationViewController: UIViewController, Dialog {
 extension NewConversationViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard let query = searchController.searchBar.text?.replacingOccurrences(of: " ", with: ""), !query.isEmpty else {
             filteredUsers = users
             tableView.reloadData()
             return
@@ -155,6 +160,11 @@ extension NewConversationViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let user = filteredUsers[indexPath.row]
+        dismiss(animated: true)
+        dismiss(animated: true) { [weak self] in
+            self?.newUserSelected?(user)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

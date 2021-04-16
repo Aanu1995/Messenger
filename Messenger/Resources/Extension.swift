@@ -68,3 +68,12 @@ extension String {
         return uppercased()[0] + allLowerCase
     }
 }
+
+extension Date {
+    func parseString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
+}

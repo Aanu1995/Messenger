@@ -8,7 +8,7 @@
 import UIKit
 import JGProgressHUD
 
-class ConversationViewController: UIViewController {
+class ConversationViewController: UIViewController, Dialog {
     // MARK: Properties
     
     private let tableView: UITableView = {
@@ -32,12 +32,13 @@ class ConversationViewController: UIViewController {
         return loadingView
     }()
     
+    var chats: [Conversation] = []
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchConversations()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +72,7 @@ class ConversationViewController: UIViewController {
             navC.navigationItem.largeTitleDisplayMode = .always
             present(navC, animated: false)
         }
+        fetchConversations()
     }
     
     private func showLoading(isLoading: Bool) {
@@ -79,16 +81,42 @@ class ConversationViewController: UIViewController {
         } else {
             loadingView.dismiss(animated: true)
         }
-        noChatsLabel.isHidden = !isLoading
+        noChatsLabel.isHidden = true
+        tableView.isHidden = isLoading
     }
     
     private func fetchConversations(){
-        tableView.isHidden = false
+        showLoading(isLoading: true)
+        DatabaseManager.shared.getAllConversations(for: AuthManager.shared.currentUser) { [weak self] result in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.showLoading(isLoading: false)
+                switch result {
+                case .success(let chats):
+                    strongSelf.chats = chats
+                    strongSelf.tableView.reloadData()
+                    break
+                case .failure(let error):
+                    if strongSelf.chats.isEmpty {
+                        strongSelf.present(strongSelf.showErrorDialog(message: error.localizedDescription), animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func createNewChat(with user: ChatAppUser){
+        let vc = ChatViewController(receiver: user, sender: AuthManager.shared.currentUser, id: nil)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func didTapCompose(){
         let vc = NewConversationViewController()
         vc.title = "New Conversation"
+        vc.newUserSelected = { [weak self] newUser in
+            self?.createNewChat(with: newUser)
+        }
         present(UINavigationController(rootViewController: vc), animated: true)
     }
 }
@@ -97,20 +125,19 @@ class ConversationViewController: UIViewController {
 
 extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return chats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Foo"
+        cell.textLabel?.text = chats[indexPath.row].lastMessage.message
         cell.accessoryType = .disclosureIndicator
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = ChatViewController()
-        vc.title = "Rufus"
+        let vc = ChatViewController(receiver: AuthManager.shared.currentUser, sender: AuthManager.shared.currentUser, id: nil)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }

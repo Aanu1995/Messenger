@@ -35,9 +35,6 @@ class UserTableViewCell: UITableViewCell {
         contentView.addSubview(userImageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(dividerView)
-        
-        userImageView.layer.masksToBounds = true
-        userImageView.layer.cornerRadius = 25
     }
     
     required init?(coder: NSCoder) {
@@ -46,9 +43,12 @@ class UserTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let imageSize = 50
+        let imageSize = height - 10
         userImageView.frame = CGRect(x: 16, y: 5, width: imageSize, height: imageSize)
-        nameLabel.frame = CGRect(x: userImageView.right + 10, y: (contentView.height - 30)/2, width: contentView.width - userImageView.width - 31, height: 30)
+        userImageView.layer.masksToBounds = true
+        userImageView.layer.cornerRadius = (height - 10)/2
+        
+        nameLabel.frame = CGRect(x: userImageView.right + 10, y: (contentView.height - 30)/2, width: contentView.width - userImageView.width - 36, height: 30)
         dividerView.frame = CGRect(x: nameLabel.left, y: contentView.bottom - 1.2, width: nameLabel.width+5, height: 1.2)
     }
     
